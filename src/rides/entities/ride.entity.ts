@@ -2,7 +2,7 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToMany, ManyToOne } from 'ty
 import { Rider } from "../../riders/entities/rider.entity"
 import { Driver } from "../../drivers/entities/driver.entity"
 
-@Entity()
+@Entity('rides')
 export class Ride{
 
     @PrimaryGeneratedColumn()
@@ -15,11 +15,15 @@ export class Ride{
 
     total: number;
 
-    @ManyToOne(() => Rider, rider => rider.ride)
-    rider: Rider[]
+    driver_id: number
 
-    @ManyToOne(() => Driver, driver => driver.ride)
-    driver: Driver[]
+    rider_id: number
+
+    // @ManyToOne(() => Rider, rider => rider.ride)
+    // rider: Rider[]
+
+    // @ManyToOne(() => Driver, driver => driver.ride)
+    // driver: Driver[]
 
 
 }

@@ -1,5 +1,5 @@
 CREATE TABLE riders (
-    id BIGINT PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL
 
@@ -19,7 +19,7 @@ values(
 
 
 CREATE TABLE drivers(
-    id BIGINT PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
     lat NUMERIC UNIQUE NOT NULL,
@@ -52,7 +52,7 @@ lng
 )
 
 values(
-	2,
+2,
 'Carlos jimenez',
 'carlosjimenez@email.com',
 3.532771,
@@ -68,7 +68,7 @@ lng
 )
 
 values(
-	3,
+3,
 'Laura ochoa',
 'lauraochoa@email.com',
 3.532461,
@@ -77,7 +77,7 @@ values(
 
 
 CREATE TABLE payments_sources(
-    id BIGINT PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     date DATE NOT NULL,
     payment_source_id BIGINT NOT NULL,
     rider_id BIGINT NOT NULL,
@@ -86,12 +86,12 @@ CREATE TABLE payments_sources(
 
 
 CREATE TABLE rides(
-    id BIGINT PRIMARY KEY,
+    id SERIAL PRIMARY KEY,
     date DATE NOT NULL,
     driver_id BIGINT NOT NULL,
     rider_id BIGINT NOT NULL,
     status VARCHAR(50) NOT NULL,
-    FOREIGN KEY (rider_id) REFERENCES riders (id)
+    FOREIGN KEY (rider_id) REFERENCES riders (id),
     FOREIGN KEY (driver_id) REFERENCES drivers (id)
 );
 
