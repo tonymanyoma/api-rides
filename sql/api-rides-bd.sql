@@ -75,6 +75,21 @@ values(
 -76.294834
 );
 
+INSERT INTO drivers(
+id,
+name,
+email,
+
+)
+
+values(
+	4,
+'Milo ochoa',
+'miloochoa@email.com',
+3.531199,
+-76.292340
+);
+
 
 CREATE TABLE payments_sources(
     id SERIAL PRIMARY KEY,
@@ -91,6 +106,7 @@ CREATE TABLE rides(
     driver_id BIGINT NOT NULL,
     rider_id BIGINT NOT NULL,
     status VARCHAR(50) NOT NULL,
+    total NUMERIC NULL,
     FOREIGN KEY (rider_id) REFERENCES riders (id),
     FOREIGN KEY (driver_id) REFERENCES drivers (id)
 );

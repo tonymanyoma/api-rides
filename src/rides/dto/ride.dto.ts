@@ -1,7 +1,6 @@
-export class CreateDriverDTO {
-    readonly status: string;
-    readonly total: number;
-    readonly driver_id: number;
+export class CreateRideDTO {
+    readonly lat: number;
+    readonly lng: number;
     readonly rider_id: number;
 
 }

@@ -14,13 +14,10 @@ export class Rider{
     @Column({length: 100})
     email: string;
 
-    // @OneToMany((type) => Payment_source, (payment_source) => payment_source.id)
-    // payments_sources: Payment_source[]
+    @OneToMany(() => Payment_source, payment_source => payment_source.rider_id)
+    payments_sources: Payment_source[]
 
-    // @OneToMany(() => Payment_source, payment_source => payment_source.rider_id)
-    // payments_sources: Payment_source[]
-
-    // @OneToMany(() => Ride, ride => ride.rider)
-    // ride: Ride[]
+    @OneToMany(() => Ride, ride => ride.rider_id)
+    ride: Ride[]
 
 }

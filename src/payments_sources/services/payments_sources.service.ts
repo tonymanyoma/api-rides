@@ -7,6 +7,7 @@ import { Repository } from 'typeorm';
 
 import { Payment_source } from './../entities/payment_source.entity'
 
+
 @Injectable()
 export class PaymentsSourcesService {
 
@@ -14,7 +15,6 @@ export class PaymentsSourcesService {
 
 
     async createPaymentSource(createPaymentSourceDTO: CreatePaymentSourceDTO){
-
 
       return  this.http
       .post('https://sandbox.wompi.co/v1/payment_sources',
@@ -36,9 +36,7 @@ export class PaymentsSourcesService {
         // map(response => response.data)
 
         map(async (res) => {
-          console.log('respuesta', res.data)
-
-          // return res.data
+          // console.log('respuesta', res.data)
 
           const moment = require('moment');
 
