@@ -28,7 +28,7 @@ export class RidesController {
         const ride = await this.ridesService.finishRade(finishRideDTO);
 
         return res.status(HttpStatus.OK).json({
-            message: 'Ride finish successfully',
+            message: 'Ride finished successfully',
             ride: ride
         }); 
 
