@@ -21,6 +21,8 @@ export class RidesService {
         @InjectRepository(Payment_source) private paymentSourceRepo: Repository<Payment_source>,
         private http: HttpService) {}
 
+
+      // Create a ride calculating the distance calculating distance with dummy drivers 
     async createRide(createRideDTO: CreateRideDTO){
 
       const moment = require('moment');
@@ -51,7 +53,6 @@ export class RidesService {
         }
 
         if(arrayNewDrivers.length > 1){
-
             this.sortDrivers(arrayNewDrivers)
         }
 
@@ -68,11 +69,13 @@ export class RidesService {
 
     }
 
+      // order drivers
     sortDrivers(drivers){
 
        return drivers.sort((a, b) => a.distance - b.distance )
     }
 
+    // calculate distance between 2 points
     calcDistance(lat1, lon1, lat2, lon2, unit){
 
         if ((lat1 == lat2) && (lon1 == lon2)) {
@@ -97,6 +100,7 @@ export class RidesService {
 
     }
 
+    // finish race and make payment
    async finishRade(finishRideDTO: FinishRideDTO){
 
           const getRide = await this.rideRepo.findOneBy({driver_id: finishRideDTO.driver_id, status: 'in progress'})
@@ -129,13 +133,12 @@ export class RidesService {
 
           total = kmPrice + minuteElapsed + 3500
 
-          console.log('total', total)
-
           await this.payRide(total, getRide.id, finishRideDTO.rider_id, finishRideDTO.payment_source_id, finishRideDTO.installments)
 
     
     }
 
+    // convert dates and hours to minutes
     getMinutes(time1, time2){
 
         var initialDate = new Date(time1)
@@ -149,6 +152,7 @@ export class RidesService {
 
     }
 
+    //realizar pago
    async payRide(total, ride_id, rider_id, payment_source_id, installments){
 
     const getRider = await this.riderRepo.findOneBy({id: rider_id})
@@ -190,8 +194,7 @@ export class RidesService {
         )
         .pipe(
           catchError((error) => {
-            console.log('error', error.response.data)
-            console.log('error', error.response.data.error.messages)
+
             var res = {
               "status" : error.response.status,
               "localized_code" : "WOMPI_ERROR",
