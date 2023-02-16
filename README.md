@@ -1,73 +1,128 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Rides api
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+![Image text](https://descubrecomohacerlo.com/wp-content/uploads/2020/07/gps-uber.jpg)
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+> Is a ride-hailing service, developed in Nest js. A sql file is included inside with false data for its operation. uses the Postgresql relational database and the ORM TypeOrm.
 
-## Description
+> In this service you can create a payment source with a previously tokenized card and an acceptance token, request a race and make the payment for this at the end of the service.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
-## Installation
+# Getting Started
 
-```bash
-$ npm install
-```
+> According to general purpose you need to configure and follows next steps
 
-## Running the app
+## Configuration and Prerequisites
 
-```bash
-# development
-$ npm run start
+  - Node js V 14.16.0
+  - Nest js cli 9.1.9
+  - npm 6.14.11
+  - docker
+  - Create .env file and includes
 
-# watch mode
-$ npm run start:dev
+    ```
+    POSTGRES_PORT_EXTERNAL=9091
+    DB_USER=root
+    DB_PASS=QXBJXy9SaURlclMq
+    DB_NAME=api-rides
 
-# production mode
-$ npm run start:prod
-```
+    DB_HOST=database
+    DB_PORT=5432
 
-## Test
+    AUTHORIZATION_WOMPI_TOKEN=prv_test_LGM1VshTFlXgjrA0hQvROWqFPL2fDoFC
+    ```
+## Instalation
 
-```bash
-# unit tests
-$ npm run test
+  - Clone the project
+  - Execute npm install
+  - Run docker compose up -d
 
-# e2e tests
-$ npm run test:e2e
+## Tips 
+> The docker-compose file contains the Pgadmin image, to connect to the database and review the information quickly. the connection data is
+    ```
+    Email: prueba@email.com
+    Password: root
+    ```
 
-# test coverage
-$ npm run test:cov
-```
+## Available Endpoints
 
-## Support
+1. Create payment source 
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+  - url http://localhost:3000/api/payments_sources/create
+  - Method POST
+  - Params
+  ```
+    {
+      "type": "CARD",
+      "token": "tok_test_35483_aff96d7F849aafa865840b96E55104dE",
+      "customer_email": "pepito_perez@example.com",
+      "rider_id": 1,
+      "acceptance_token": "eyJhbGciOiJIUzI1NiJ9.eyJjb250cmFjdF9pZCI6MSwicGVybWFsaW5rIjoiaHR0cHM6Ly93b21waS5jby93cC1jb250ZW50L3VwbG9hZHMvMjAxOS8wOS9URVJNSU5PUy1ZLUNPTkRJQ0lPTkVTLURFLVVTTy1VU1VBUklPUy1XT01QSS5wZGYiLCJmaWxlX2hhc2giOiIzZGNkMGM5OGU3NGFhYjk3OTdjZmY3ODExNzMxZjc3YiIsImppdCI6IjE2NzY1MTg2NjUtODI0NDMiLCJleHAiOjE2NzY1MjIyNjV9.EAPuHDemn2GlmYNDXVS7jEbBnSxJqXommfZYXwzMpF4"
+    }
+  ```
+  - Response 
 
-## Stay in touch
+  ```
+  {
+    "message": "Payment method added successfully",
+    "paymentSource": {
+        "date": "2023-02-15",
+        "payment_source_id": 48942,
+        "rider_id": 1,
+        "id": 1
+    }
+  }
+  ```
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+2. Create ride
 
-## License
+  - url http://localhost:3000/api/rides/create
+  - Method POST
+  - Params
 
-Nest is [MIT licensed](LICENSE).
+  ```
+    {   
+        "rider_id": 1,
+        "lat": 3.531802,
+        "lng": -76.299841
+    }
+  ```
+  - Response 
+
+  ```
+  {
+    "message": "Ride created successfully",
+    "ride": {
+        "date": "2023-02-15 22:39:06",
+        "driver_id": 3,
+        "rider_id": 1,
+        "lat": 3.531802,
+        "lng": -76.299841,
+        "status": "in progress",
+        "total": null,
+        "id": 1
+    }
+  }
+  ```
+3. Create ride
+
+  - url http://localhost:3000/api/rides/finish_ride
+  - Method POST
+  - Params
+
+  ```
+    {
+      "driver_id": 3,
+      "rider_id": 1,
+      "payment_source_id":8,
+      "installments": 1,
+      "lat": 3.517023,
+      "lng": -76.299174
+    }
+  ```
+  - Response 
+
+  ```
+  {
+    "message": "Ride finish successfully"
+  }
+  ```
