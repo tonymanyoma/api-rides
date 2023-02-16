@@ -67,21 +67,4 @@ export class PaymentsSourcesService {
 
     }
 
-
-    async getBitcoinPriceUSD() {
-        return this.http
-          .get('https://api.coindesk.com/v1/bpi/currentprice.json')
-          .pipe(
-            map((res) => res.data?.bpi),
-            map((bpi) => bpi?.USD),
-            map((usd) => {
-              return usd?.rate;
-            }),
-          )
-          .pipe(
-            catchError(() => {
-              throw new ForbiddenException('API not available');
-            }),
-          );
-      }
 }
