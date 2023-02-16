@@ -13,11 +13,11 @@
 
 ## Configuration and Prerequisites
 
-  -Node js V 14.16.0
-  -Nest js cli 9.1.9
-  -npm 6.14.11
-  -docker
-  -Create .env file and includes
+  - Node js V 14.16.0
+  - Nest js cli 9.1.9
+  - npm 6.14.11
+  - docker
+  - Create .env file and includes
 
     ```
     POSTGRES_PORT_EXTERNAL=9091
