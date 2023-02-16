@@ -13,7 +13,7 @@ export class PaymentsSourcesService {
 
     constructor( @InjectRepository(Payment_source) private paymentSourceRepo: Repository<Payment_source>, private http: HttpService) {}
 
-
+  // create payment source having previously a tokenized card and an acceptance token
     async createPaymentSource(createPaymentSourceDTO: CreatePaymentSourceDTO){
 
       return  this.http
@@ -33,8 +33,6 @@ export class PaymentsSourcesService {
       )
       .pipe(
 
-        // map(response => response.data)
-
         map(async (res) => {
   
           const moment = require('moment');
@@ -53,8 +51,7 @@ export class PaymentsSourcesService {
       )
       .pipe(
         catchError((error) => {
-          console.log('error', error.response.data)
-          console.log('error', error.response.data.error.messages)
+
           var res = {
             "status" : error.response.status,
             "localized_code" : "WOMPI_ERROR",
