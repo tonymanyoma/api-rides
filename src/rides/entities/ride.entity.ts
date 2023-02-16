@@ -11,15 +11,22 @@ export class Ride{
     @Column({ nullable: false})
     date: Date;
 
+    @ManyToOne(type => Driver, { cascade: true, nullable: false, })
+    @JoinColumn({name: "driver_id"})
+    @Column()
+    driver_id: number;
+
+
     @ManyToOne(type => Rider, { cascade: true, nullable: false, })
     @JoinColumn({name: "rider_id"})
     @Column()
     rider_id: number;
 
-    @ManyToOne(type => Driver, { cascade: true, nullable: false, })
-    @JoinColumn({name: "driver_id"})
-    @Column()
-    driver_id: number;
+    @Column({ type: 'decimal', precision: 3, scale: 15 }) 
+    lat: number;
+
+    @Column({ type: 'decimal', precision: 3, scale: 15}) 
+    lng: number;
 
     @Column({length: 30})
     status: string;

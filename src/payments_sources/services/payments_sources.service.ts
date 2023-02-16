@@ -36,12 +36,12 @@ export class PaymentsSourcesService {
         // map(response => response.data)
 
         map(async (res) => {
-          // console.log('respuesta', res.data)
-
+  
           const moment = require('moment');
+          const tz = require('moment-timezone');
 
           const newPaymentSource = new Payment_source();
-          newPaymentSource.date = moment(new Date).format('YYYY-MM-DD');
+          newPaymentSource.date = moment().tz("America/Bogota").format('YYYY-MM-DD');
           newPaymentSource.payment_source_id = res.data.data.id;
           newPaymentSource.rider_id = createPaymentSourceDTO.rider_id;
 

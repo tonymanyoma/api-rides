@@ -16,29 +16,15 @@ import { Rider } from './riders/entities/rider.entity'
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    // TypeOrmModule.forRoot({
-    //   type: 'postgres',
-    //   host: process.env.DB_HOST,
-    //   port: parseInt(process.env.DB_PORT),
-    //   username: process.env.DB_USER,
-    //   password: process.env.DB_PASS,
-    //   database: process.env.DB_NAME,
-    //   entities: ['dist/**/*.entity{.ts,.js}'],
-    //   synchronize: false,
-    //   retryDelay: 30000,
-    //   retryAttempts: 20
-    // }),
-
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: 'root',
-      database: 'api-rides',
-      entities: [Payment_source, Rider],
+      host: process.env.DB_HOST,
+      port: parseInt(process.env.DB_PORT),
+      username: process.env.DB_USER,
+      password: process.env.DB_PASS,
+      database: process.env.DB_NAME,
+      entities: ['dist/**/*.entity{.ts,.js}'],
       synchronize: false,
-      autoLoadEntities: true,
       retryDelay: 30000,
       retryAttempts: 20
     }),

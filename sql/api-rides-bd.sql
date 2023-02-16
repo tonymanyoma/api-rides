@@ -79,7 +79,8 @@ INSERT INTO drivers(
 id,
 name,
 email,
-
+lat,
+lng
 )
 
 values(
@@ -102,9 +103,11 @@ CREATE TABLE payments_sources(
 
 CREATE TABLE rides(
     id SERIAL PRIMARY KEY,
-    date DATE NOT NULL,
+    date TIMESTAMP NOT NULL,
     driver_id BIGINT NOT NULL,
     rider_id BIGINT NOT NULL,
+    lat NUMERIC UNIQUE NOT NULL,
+    lng NUMERIC UNIQUE NOT NULL,
     status VARCHAR(50) NOT NULL,
     total NUMERIC NULL,
     FOREIGN KEY (rider_id) REFERENCES riders (id),
