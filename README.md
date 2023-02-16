@@ -2,9 +2,9 @@
 
 ![Image text](https://descubrecomohacerlo.com/wp-content/uploads/2020/07/gps-uber.jpg)
 
-> Is a ride-hailing service, developed in Nest js. A sql file is included inside with false data for its operation. uses the Postgresql relational database and the ORM TypeOrm.
+> Is a ride-hailing service, developed in Nest js. A sql file is included inside with dummy data for its operation. Uses Postgresql relational database and ORM TypeOrm.
 
-> In this service you can create a payment source with a previously tokenized card and an acceptance token, request a race and make the payment for this at the end of the service.
+> With this API you can create a payment source with a previously tokenized card and an acceptance token, request a ride and pay for it at the end.
 
 
 # Getting Started
@@ -13,10 +13,10 @@
 
 ## Configuration and Prerequisites
 
-  - Node js V 14.16.0
-  - Nest js cli 9.1.9
-  - npm 6.14.11
-  - docker
+  - Node js v 14.16.0
+  - Nest js cli v 9.1.9
+  - npm v 6.14.11
+  - Docker
   - Create .env file and includes
 
     ```
@@ -28,7 +28,7 @@
     DB_HOST=database
     DB_PORT=5432
 
-    AUTHORIZATION_WOMPI_TOKEN=prv_test_LGM1VshTFlXgjrA0hQvROWqFPL2fDoFC
+    AUTHORIZATION_WOMPI_TOKEN=PUT_YOUR_TOKEN
     ```
 ## Instalation
 
@@ -103,7 +103,7 @@
     }
   }
   ```
-3. Create ride
+3. Finish ride
 
   - url http://localhost:3000/api/rides/finish_ride
   - Method POST
@@ -123,6 +123,6 @@
 
   ```
   {
-    "message": "Ride finish successfully"
+    "message": "Ride finished successfully"
   }
   ```
